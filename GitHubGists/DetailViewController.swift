@@ -44,7 +44,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 if result.error?.code == NSURLErrorUserAuthenticationRequired {
                     self.alertController = UIAlertController(title:
                         "Couldn't get starred status", message: result.error?.description, preferredStyle: .Alert)
-                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    let okAction = UIAlertAction(title: "Got It!", style: .Default, handler: nil)
                     self.alertController?.addAction(okAction)
                     self.presentViewController(self.alertController!, animated:true,
                                                completion: nil)
@@ -143,7 +143,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 } else {
                     self.alertController = UIAlertController(title: "Couldn't star gist", message: "Sorry, your gist couldn't be starred. " + "Maybe GitHub is down or you don't have an Internet connection.", preferredStyle: .Alert)
                 }
-                let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                let okAction = UIAlertAction(title: "Got It!", style: .Default, handler: nil)
                 self.alertController?.addAction(okAction)
                 self.presentViewController(self.alertController!, animated:true, completion: nil)
                 return
@@ -169,7 +169,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 } else {
                     self.alertController = UIAlertController(title: "Couldn't unstar gist", message: "Sorry, your gist couldn't be unstarred. " + "Maybe GitHub is down or you don't have an Internet connection.", preferredStyle: .Alert)
                 }
-                let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                let okAction = UIAlertAction(title: "Got It!", style: .Default, handler: nil)
                 self.alertController?.addAction(okAction)
                 self.presentViewController(self.alertController!, animated:true, completion: nil)
                 return

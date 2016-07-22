@@ -28,7 +28,7 @@ class MasterViewController: UITableViewController, LoginViewDelegate, SFSafariVi
         super.viewDidLoad()
         if let split = self.splitViewController {
             let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            self.detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
     
@@ -64,14 +64,15 @@ class MasterViewController: UITableViewController, LoginViewDelegate, SFSafariVi
                 self.gists = []
             }
             self.gists += fetchedGists
-            let path:Path = [.Public, .Starred, .MyGists][self.gistSegmentedControl.selectedSegmentIndex]
+            let path: Path = [.Public, .Starred, .MyGists][self.gistSegmentedControl.selectedSegmentIndex]
             let success = PersistenceManager.saveArray(self.gists, path: path)
             if !success {
                 self.showOfflineSaveFailedBanner()
             }
             let now = NSDate()
-            let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
+            let updateString = "Last updated " + self.dateFormatter.stringFromDate(now)
             self.refreshControl?.attributedTitle = NSAttributedString(string: updateString)
+            self.refreshControl?.tintColor = UIColor.whiteColor()
             self.tableView.reloadData()
         }
         switch gistSegmentedControl.selectedSegmentIndex {
@@ -248,7 +249,7 @@ class MasterViewController: UITableViewController, LoginViewDelegate, SFSafariVi
                     self.gists.insert(gistToDelete, atIndex: indexPath.row)
                     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Right)
                     let alertController = UIAlertController(title: "Couldn't delete gist",  message: "Sorry, your gist couldn't be deleted. Maybe GitHub is " + "down or you don't have an Internet connection.", preferredStyle: .Alert)
-                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    let okAction = UIAlertAction(title: "Got It!", style: .Default, handler: nil)
                     alertController.addAction(okAction)
                     self.presentViewController(alertController, animated:true, completion: nil)
                 }
@@ -298,7 +299,7 @@ class MasterViewController: UITableViewController, LoginViewDelegate, SFSafariVi
         if let existingBanner = self.errorBanner {
             existingBanner.dismiss()
         }
-        self.errorBanner = Banner(title: "No Internet Connection", subtitle: "Could not load gists." + " Try again when you're connected to the Internet", image: nil, backgroundColor: UIColor.redColor())
+        self.errorBanner = Banner(title: "No Internet Connection", subtitle: "Couldn't load gists." + " Try again when you're connected to the Internet", image: nil, backgroundColor: UIColor.redColor())
         self.errorBanner?.dismissesOnSwipe = true
         self.errorBanner?.show(duration: nil)
     }

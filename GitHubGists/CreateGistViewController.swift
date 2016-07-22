@@ -92,7 +92,7 @@ class CreateGistViewController: XLFormViewController {
                 where successValue == true else {
                     print(result.error)
                     let alertController = UIAlertController(title: "Couldn't create gist", message: "Sorry, your gist couldn't be created. " + "Maybe GitHub is down or you don't have an Internet connection.", preferredStyle: .Alert)
-                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    let okAction = UIAlertAction(title: "Got It!", style: .Default, handler: nil)
                     alertController.addAction(okAction)
                     self.presentViewController(alertController, animated:true, completion: nil)
                     return
